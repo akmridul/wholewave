@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListDetailsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ListDetailsController::class, 'login']);
 
-Route::get('/list-orders','ListDetailsContoller@listDetails');
+Route::post('/login-submit', [ListDetailsController::class, 'loginSubmit'])->name('login-submit');
+
+Route::get('/list-orders', [ListDetailsController::class, 'listDetails']);
+
+Route::post('/logout', [ListDetailsController::class, 'logout'])->name('logout');
